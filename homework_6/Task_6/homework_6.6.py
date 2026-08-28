@@ -1,15 +1,23 @@
 #Task 6: calculator
-a=float(input("Enter first num: "))
-b=float(input("Enter second num: "))
-c=input("Choose operator (+, -, *, /): ")
+a = float(input("Enter first num: "))
+b = float(input("Enter second num: "))
+c = input("Choose operator (+, -, *, /): ")
 
-if c=="+":
+if c == "+":
     print(f"Результат: {a} + {b} = {a + b}")
-elif c=="-":
+elif c == "-":
     print(f"Результат: {a} - {b} = {a - b}")
-elif c=="*":
+elif c == "*":
     print(f"Результат: {a} * {b} = {a * b}")
+elif c == '/' and a != 0:
+    print("Невозможно разделить на ноль!")
 elif c == "/":
     print(f"Результат: {a} / {b} = {a / b}")
 else:
     print("Выбран некорректный оператор!")
+##
+# Вот я поставила проверку на деление на ноль раньше, чем
+# проверку просто на деление. Если бы например проверка просто на
+# деление стояла раньше, могла бы операция выполниться с ошибкой?
+# Интерпретатор выполнял бы строки одна за одной или в начале проверил бы
+# все мои ограничения?
