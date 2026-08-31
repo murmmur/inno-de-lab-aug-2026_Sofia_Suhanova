@@ -9,7 +9,7 @@ elif c == "-":
     print(f"Результат: {a} - {b} = {a - b}")
 elif c == "*":
     print(f"Результат: {a} * {b} = {a * b}")
-elif c == '/' and a != 0:
+elif c == '/' and b == 0:
     print("Невозможно разделить на ноль!")
 elif c == "/":
     print(f"Результат: {a} / {b} = {a / b}")
