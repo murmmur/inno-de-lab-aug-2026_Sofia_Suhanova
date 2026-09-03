@@ -5,18 +5,16 @@ def calculate_rental_batch(quantity: int, rental_rate: float, batch_num: int, ba
     '''
     Эта функция рассчитывает оптовую стоимость аренды фильмов.
 
-    Parameters
-    ----------
-    quantity (int): Количество
-    rental_rate (float): Значение ренты
-    batch_num (int): Номер партии
-    batch_name (str): Название партии
-    discount (float): Скидка (опционально)
+    Args:
+        quantity (int): Количество
+        rental_rate (float): Значение ренты
+        batch_num (int): Номер партии
+        batch_name (str): Название партии
+        discount (float): Скидка (опционально)
 
-    Returns
-    -------
-    tuple[float, bool]: Возвращает кортеж, который содержит итоговую стоимость аренды,
-    а также говорит превышает ли эта сумма заданную константу.
+    Returns:
+        tuple[float, bool]: Возвращает кортеж, который содержит итоговую стоимость аренды,
+        а также говорит превышает ли эта сумма заданную константу.
     '''
     final_sum = round(quantity * rental_rate * (1 - discount), 2)
     is_limit_exceeded = final_sum >= MAX_RENTAL_BATCH_LIMIT

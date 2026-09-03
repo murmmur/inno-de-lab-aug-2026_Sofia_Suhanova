@@ -2,23 +2,42 @@
 import time
 from typing import Callable, Any
 
-PERFOMANCE_LOG_PREFIX = "[PERF_LOG]"
+PERFORMANCE_LOG_PREFIX = "[PERF_LOG]"
 TIME_DECIMALS = 8
 
 def perfomance_logger(func: Callable) -> Callable:
+    '''
+    Это декоратор для вывода логов и времени выполнения функции вместе с самой функцией.
+
+        Args:
+            function's arguments
+
+        Returns:
+            The wrapped function wrapper.
+    '''
     def wrapper(*args, **kwargs) -> Any:
         start_time = time.perf_counter()
         result = func(*args, **kwargs)
         end_time = time.perf_counter()
-        perfomance_time = end_time - start_time
-        print(f"{PERFOMANCE_LOG_PREFIX} Функция {func.__name__} выполнена за {perfomance_time:.8f} сек.")
+        performance_time = end_time - start_time
+        print(f"{PERFORMANCE_LOG_PREFIX} Функция {func.__name__} выполнена за {performance_time:.8f} сек.")
         return result
     return wrapper
 
 @perfomance_logger
-def get_sorted_report(revenue_data: list):
+def get_sorted_report(revenue_data: list[dict[str, str | float]]):
+    """
+        Сортирует список по заданному ключу.
+
+        Args:
+            revenue_data (list[dict[str, str | float]]): список словарей (данные по выручке жанров).
+
+        Returns:
+            revenue_data (list[dict[str, str | float]]): тот список словарей (данные по выручке жанров),
+            но уже отсортированный.
+        """
     print("Топ категорий по выручке:")
-    revenue_data.sort(key = lambda x : x["total_sales"], reverse = True)
+    revenue_data.sorted(key = lambda x : x["total_sales"], reverse = True)
     for i, item in enumerate(revenue_data, start = 1):
         print(f"{i}. {item['category']}: {item.get('total_sales')}")
     return revenue_data
