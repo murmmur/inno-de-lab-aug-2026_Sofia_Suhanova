@@ -37,10 +37,10 @@ def get_sorted_report(revenue_data: list[dict[str, str | float]]):
             но уже отсортированный.
         """
     print("Топ категорий по выручке:")
-    revenue_data.sorted(key = lambda x : x["total_sales"], reverse = True)
-    for i, item in enumerate(revenue_data, start = 1):
+    revenue_data_sorted = sorted(revenue_data, key = lambda x : x["total_sales"], reverse = True)
+    for i, item in enumerate(revenue_data_sorted, start = 1):
         print(f"{i}. {item['category']}: {item.get('total_sales')}")
-    return revenue_data
+    return revenue_data_sorted
 
 #Tests
 first_test = [{"category": "Action", "total_sales": 4311.85},
