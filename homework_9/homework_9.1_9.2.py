@@ -1,12 +1,11 @@
 #Task 1
 
 class Trainee:
-    def __init__(self, name: str, surname: str, score: int = 0, passing_grade: int = 0, passing_rate: float = 0):
+    def __init__(self, name: str, surname: str, score: int = 0, passing_grade: int = 10):
         self.name = name
         self.surname = surname
         self.__score = score
         self.passing_grade = passing_grade
-        self.passing_rate = passing_rate
 
     @property
     def score(self):
@@ -20,7 +19,7 @@ class Trainee:
         '''
         Setter of the private field.
         '''
-        if type(new_score) != int:
+        if not isinstance(new_score, int):
             raise ValueError(f"Expected value of type int, got {type(new_score)}")
         if new_score < 0:
             raise ValueError("The score shouldn't be less than 0!")
@@ -56,10 +55,10 @@ class Trainee:
         self.score -= 1
 
     def is_passing(self) -> bool:
-        if self.score >= self.passing_grade:
-            return True
-        else:
-            return False
+        '''
+        Returns True if the trainee is passing or False if not.
+        '''
+        return self.score >= self.passing_grade
 
 print("=== ПРОВЕРКА УСПЕВАЕМОСТИ СТАЖЕРА ===")
 # 1. Создание стажера с начальным баллом 9 и проходным баллом 10
@@ -89,9 +88,9 @@ class AuditTrainee(Trainee):
         return True
 
 class Cohort:
-    def __init__(self, title: str = "Python Core 2026", trainees: list[Trainee] = []):
+    def __init__(self, title: str = "Python Core 2026", trainees: list[Trainee] | None = None):
         self.title = title
-        self.trainees = trainees
+        self.trainees = trainees or []
 
     def add_trainee(self, trainee: Trainee) -> None:
         '''
